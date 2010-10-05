@@ -1,0 +1,87 @@
+
+# This file is part of the dinMenuPlugin package.
+# (c) DineCat, 2010 http://dinecat.com/
+#
+# For the full copyright and license information, please view the LICENSE file,
+# that was distributed with this package, or see http://www.dinecat.com/din/license.html
+
+# dinMenuAdmin module generator configuration
+#
+# @package     dinMenuPlugin
+# @subpackage  modules.dinMenuAdmin.config
+# @author      Nicolay N. Zyk <relo.san@gmail.com>
+
+plugin:                             'dinMenuPlugin'
+
+generator:
+
+    param:
+
+        model_class:                'DinMenu'
+        singular:                   null
+        plural:                     null
+        route_prefix:               'din_menu_admin'
+        with_doctrine_route:        true
+        i18n_catalogue:             'dinMenuAdmin'
+
+        config:
+
+            actions:                null
+
+            fields:
+                application:        { label: 'fieldLabels.application' }
+                title:              { label: 'fieldLabels.title' }
+                name:               { label: 'fieldLabels.name' }
+                is_public:          { label: 'fieldLabels.isPublic' }
+                description:        { label: 'fieldLabels.description' }
+
+            list:
+                title:              'titles.list'
+                display:            ['application', 'title', 'is_public']
+                table_method:       'retrieveWithI18n'
+                pager_class:        'dinDoctrinePager'
+                actions:
+                    _new:
+                        params:     { ajax: 'action' }
+                object_actions:
+                    items:
+                        label:      'listLabels.items'
+                        action:     'items'
+                        icon_class_suffix:  'document'
+                        params:     { ajax: 'action' }
+                    _edit:
+                        params:     { ajax: 'action' }
+                    _delete:
+                        params:     { ajax: 'post' }
+                sort:
+                    application:    { columns: ['application'] }
+                    title:          { columns: ['application', 'title'] }
+                    is_public:      { columns: ['application', 'is_public'] }
+
+            filter:
+                display:            ['application', 'name', 'title', 'is_public', 'description']
+
+            form:
+                display:
+                    fieldsets.base: ['application', 'name', 'title', 'is_public', 'description']
+
+            edit:
+                title:              'titles.edit.%%title%%'
+                actions:
+                    _delete:
+                        params:     { ajax: 'action' }
+                    _save:          null
+                    _list:
+                        params:     { ajax: 'action' }
+
+            new:
+                title:              'titles.new'
+                actions:
+                    _save_and_add:  null
+                    _save:          null
+                    _list:
+                        params:     { ajax: 'action' }
+
+            show:                   null
+
+#EOF

@@ -1,0 +1,60 @@
+
+# This file is part of the dinMenuPlugin package.
+# (c) DineCat, 2010 http://dinecat.com/
+#
+# For the full copyright and license information, please view the LICENSE file,
+# that was distributed with this package, or see http://www.dinecat.com/din/license.html
+
+# dinMenuPlugin model configuration
+#
+# @package     dinMenuPlugin
+# @subpackage  config
+# @author      Nicolay N. Zyk <relo.san@gmail.com>
+
+forms:
+
+    DinMenuItem:
+        fields:
+            root_id:
+                disable:            true
+            lft:
+                disable:            true
+            rgt:
+                disable:            true
+            level:
+                disable:            true
+            menu_id:
+                widget:
+                    class:          'sfWidgetFormInputHidden'
+                    options:
+                        model:      null
+                        add_empty:  null
+                        label:      null
+            parent_id:
+                virtual:            true
+                widget:
+                    class:          'sfWidgetFormDoctrineChoice'
+                    options:
+                        model:      "'DinMenuItem'"
+                        order_by:   "array( 'root_id, lft', '' )"
+                        method:     "'getIndentedName'"
+                        label:      "'formLabels.parent'"
+                        query:      "Doctrine::getTable( 'DinMenuItem' )->createQuery()->addWhere( 'menu_id = ?', sfContext::getInstance()->getRequest()->getParameter( 'menu_id' ) )"
+                validator:
+                    class:          'sfValidatorDoctrineChoice'
+                    options:
+                        required:   'false'
+                        model:      "'DinMenuItem'"
+
+filters:
+
+    DinMenuTranslation:
+        disable:                true
+
+    DinMenuItemTranslation:
+        disable:                true
+
+    DinMenuItem:
+        disable:                true
+
+#EOF

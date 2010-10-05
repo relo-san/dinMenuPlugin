@@ -1,0 +1,30 @@
+
+# This file is part of the dinMenuPlugin package.
+# (c) DineCat, 2010 http://dinecat.com/
+#
+# For the full copyright and license information, please view the LICENSE file,
+# that was distributed with this package, or see http://www.dinecat.com/din/license.html
+
+# dinMenuPlugin cache routing configuration
+#
+# @package     dinMenuPlugin
+# @subpackage  config
+# @author      Nicolay N. Zyk <relo.san@gmail.com>
+routes:
+    menus:
+        type:           'prepared'
+        get:
+            model:      'DinMenu'
+            method:     'getMenuItems'
+            path:       ':_root/menus'
+            key:        ':application.:name.:_i18n'
+        remove:
+            default:
+                path:   ':_root/menus'
+                key:    '*'
+
+links:
+    DinMenu:        ['menus']
+    DinMenuItem:    ['menus']
+
+#EOF

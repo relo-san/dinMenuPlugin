@@ -1,0 +1,32 @@
+
+# This file is part of the dinMenuPlugin package.
+# (c) DineCat, 2010 http://dinecat.com/
+#
+# For the full copyright and license information, please view the LICENSE file,
+# that was distributed with this package, or see http://www.dinecat.com/din/license.html
+
+# dinMenuPlugin routing configuration
+#
+# @package     dinMenuPlugin
+# @subpackage  config
+# @author      Nicolay N. Zyk <relo.san@gmail.com>
+
+din_menu_item_admin:
+    class:                      'sfDoctrineRouteCollection'
+    options:
+        model:                  'DinMenuItem'
+        module:                 'dinMenuItemAdmin'
+        prefix_path:            '/adm/menu/:menu_id/items'
+        column:                 'id'
+        with_wildcard_routes:   true
+
+din_menu_admin:
+    class:                      'sfDoctrineRouteCollection'
+    options:
+        model:                  'DinMenu'
+        module:                 'dinMenuAdmin'
+        prefix_path:            '/adm/menu'
+        column:                 'id'
+        with_wildcard_routes:   true
+
+#EOF
